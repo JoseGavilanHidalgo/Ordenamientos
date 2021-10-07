@@ -26,9 +26,8 @@ def IRSELECCION():  #Aqui, creamos la ventana para el tipo de ordenamiento SELEC
     entrySELECCION.place(x=10,y=10,width=480,height=420) # se edita el ancho y largo del entry anterior
 
 def IRINSERCION():  #Aqui, creamos la ventana para el tipo de ordenamiento INSERCION
-    x=ordenar_burbuja(listaprincipal1)
+    x=ordenar_insercion(listaprincipal)
     messagebox.showinfo("LISTA ORDENADA POR INSERCION",x)
-  
 
 def IRQUICKSORT():  #Aqui, creamos la ventana para el tipo de ordenamiento QUICKSORT
     ventanaQUICKSORT = Toplevel() 
@@ -73,7 +72,17 @@ def IRMERGESORT(): #Aqui, creamos la ventana para el tipo de ordenamiento MERGES
 
 def crearLista():
 
-    lista=[]
+    def mostrar():
+        messagebox.showinfo("LISTA",listaprincipal)
+        ventanaAgregar.destroy()
+
+    def agregarnumero():
+        listaprincipal.append(num.get())
+        messagebox.showinfo("Numero Agregado","Numero "+str(num.get())+ " agregado con exito ")
+        num.set(0)
+        print(listaprincipal)
+
+
     ventanaAgregar = Toplevel() 
     ventanaAgregar['bg'] = 'steel blue'  # color de fondo
     ventanaAgregar.geometry("500x450+500+300")
@@ -84,10 +93,18 @@ def crearLista():
     num=IntVar()
     entry1=ttk.Entry(ventanaAgregar, textvariable= num).place(x=250 , y=55)
 
-    button1 = ttk.Button(ventanaAgregar, text="Agregar", command=lista.append(num.get())).place(x=275,y=80)
-    button2 = ttk.Button(ventanaAgregar,text="Finalizar y Mostrar",command="").place(x=150,y=150)
+    button1 = ttk.Button(ventanaAgregar, text="Agregar", command=agregarnumero).place(x=275,y=80)
+    button2 = ttk.Button(ventanaAgregar,text="Finalizar y Mostrar",command=mostrar).place(x=150,y=150)
 
-def crearListaRandom(n):
+def crearListaRandom():
+    
+    def generador():
+        
+        for i in range(num.get()):
+            listaprincipal.append(random.randint(0,20))
+        messagebox.showinfo("LISTA CREADA",listaprincipal)
+        ventanaAgregarR.destroy()
+        
 
     ventanaAgregarR = Toplevel() #crea nueva ventana al seleccionar practicante-> mostrar datos
     ventanaAgregarR['bg'] = 'steel blue'  # color de fondo
@@ -95,17 +112,13 @@ def crearListaRandom(n):
     ventanaAgregarR.resizable(0,0)
     ventanaAgregarR.title("CREAR LISTA")
 
-    label1=Label(ventanaAgregarR,font=fuente_0,bg= "steel blue",fg="white",text="Ingrese Numero : ").place (x=50 , y=50)
+    label1=Label(ventanaAgregarR,font=fuente_0,bg= "steel blue",fg="white",text="Ingrese cantidad de numeros que quiere en la lista : ").place (x=50 , y=50)
     num=IntVar()
     entry1=ttk.Entry(ventanaAgregarR, textvariable= num).place(x=250 , y=55)
 
-    button1 = ttk.Button(ventanaAgregarR, text="Agregar", command="").place(x=275,y=80)
-    button2 = ttk.Button(ventanaAgregarR,text="Finalizar y Mostrar",command="").place(x=150,y=150)
-        
-    lista=[0]*n
-    for i in range(n):
-        lista[i]= random.randint(0,1000)
-    return lista
+    button1 = ttk.Button(ventanaAgregarR, text="Crear", command=generador).place(x=275,y=80)
+    
+
 
 
 
@@ -140,7 +153,7 @@ label9=Label(raiz,font=fuente_0,bg="steel blue",fg="white", text="Heapsort" ).pl
 
 button1 = ttk.Button(raiz, text="Crear lista", command=crearLista ).place(x=160,y=120)
 
-button2 = ttk.Button(raiz,text="Generar lista aleatoria", command="" ).place(x=320,y=120)
+button2 = ttk.Button(raiz,text="Generar lista aleatoria", command=crearListaRandom ).place(x=320,y=120)
 
 button3 = ttk.Button(raiz, text="IR", command=IRSELECCION ).place(x=137,y=340)
 
@@ -156,9 +169,9 @@ button8 = ttk.Button(raiz, text="IR", command=IRHEAPSORT ).place(x=137,y=560)
 
 #### ENTRYS ####
 
-lista=StringVar()
 
-entry1 = ttk.Entry(raiz, state="readonly" , textvariable=lista)
+
+
 
 
 
