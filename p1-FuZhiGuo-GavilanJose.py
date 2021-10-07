@@ -16,24 +16,24 @@ from ToolSortFuZhiGuoGavilanJose import *
 
 #### Funciones ####
 def IRSELECCIONASCENDENTE():  #Aqui, creamos la ventana para el tipo de ordenamiento SELECCION
-   x=ordenar_seleccionAscendente(listaprincipal1)
+   x=ordenar_seleccionAscendente(listaprincipal)
    messagebox.showinfo("LISTA ORDENADA POR SELECCION ASCENDENTE",x)
 
 def IRSELECCIONDESCENDENTE():
-    x=ordenar_seleccionDescendente(listaprincipal1)
+    x=ordenar_seleccionDescendente(listaprincipal)
     messagebox.showinfo("LISTA ORDENADA POR SELECCION DESCENDENTE",x)
 
 def IRINSERCION():  #Aqui, creamos la ventana para el tipo de ordenamiento INSERCION
-    x=ordenar_insercion(listaprincipal1)
+    x=ordenar_insercion(listaprincipal)
     messagebox.showinfo("LISTA ORDENADA POR INSERCION",x)
   
 
 def IRQUICKSORT():  #Aqui, creamos la ventana para el tipo de ordenamiento QUICKSORT
-    x=ordenar_quicksort(listaprincipal1)
+    x=ordenar_quicksort(listaprincipal,0,len(listaprincipal)-1)
     messagebox.showinfo("LISTA ORDENADA POR QUICKSORT",x)   
 
 def IRBUBBLESORT():  #Aqui, creamos la ventana para el tipo de ordenamiento BUBBLESORT
-    x=ordenar_burbuja(listaprincipal1)
+    x=ordenar_burbuja(listaprincipal)
     messagebox.showinfo("LISTA ORDENADA POR BUBBLESORT",x)    
 
 def IRHEAPSORT():  #Aqui, creamos la ventana para el tipo de ordenamiento HEAPSORT
@@ -51,7 +51,7 @@ def IRMERGESORT(): #Aqui, creamos la ventana para el tipo de ordenamiento MERGES
     messagebox.showinfo("LISTA ORDENADA POR MERGESORT",x)
 
 def crearLista():
-
+    listaprincipal.clear()
     def mostrar():
         messagebox.showinfo("LISTA",listaprincipal)
         ventanaAgregar.destroy()
@@ -77,7 +77,7 @@ def crearLista():
     button2 = ttk.Button(ventanaAgregar,text="Finalizar y Mostrar",command=mostrar).place(x=150,y=150)
 
 def crearListaRandom():
-    
+    listaprincipal.clear()
     def generador():
         
         for i in range(num.get()):
@@ -92,14 +92,17 @@ def crearListaRandom():
     ventanaAgregarR.resizable(0,0)
     ventanaAgregarR.title("CREAR LISTA")
 
-    label1=Label(ventanaAgregarR,font=fuente_0,bg= "steel blue",fg="white",text="Ingrese cantidad de numeros que quiere en la lista : ").place (x=50 , y=50)
+    label1=Label(ventanaAgregarR,font=fuente_0,bg= "steel blue",fg="white",text="Ingrese cantidad de numeros que quiere en la lista : ").place (x=20 , y=50)
     num=IntVar()
-    entry1=ttk.Entry(ventanaAgregarR, textvariable= num).place(x=250 , y=55)
+    entry1=ttk.Entry(ventanaAgregarR, textvariable= num).place(x=170 , y=95)
 
-    button1 = ttk.Button(ventanaAgregarR, text="Crear", command=generador).place(x=275,y=80)
+    button1 = ttk.Button(ventanaAgregarR, text="Crear", command=generador).place(x=200,y=150)
     
 
-
+def eliminarLista():
+    listaprincipal.clear()
+    messagebox.showinfo("LISTA ELIMINADA","Lista eliminada con exito")
+    
 
 
 
@@ -135,7 +138,7 @@ button1 = ttk.Button(raiz, text="Crear lista", command=crearLista ).place(x=160,
 
 button2 = ttk.Button(raiz,text="Generar lista aleatoria", command=crearListaRandom ).place(x=320,y=120)
 
-button3= ttk.Button(raiz,text="Eliminar lista",command="").place(x=255,y=190)
+button3= ttk.Button(raiz,text="Eliminar lista",command=eliminarLista).place(x=255,y=190)
 
 button3 = ttk.Button(raiz, text="ASCENDENTE", command=IRSELECCIONASCENDENTE ).place(x=87,y=340)
 button4 = ttk.Button(raiz, text="DESCENDENTE", command=IRSELECCIONDESCENDENTE ).place(x=207,y=340)
@@ -161,8 +164,6 @@ button9 = ttk.Button(raiz, text="IR", command=IRHEAPSORT ).place(x=137,y=560)
 #### VARIABLES ####
 
 listaprincipal=[]
-listastring=''
-listaprincipal1=[6,3,4,5,2]
 # x=ordenar_burbuja(listaprueba)
 # print(x)
 
