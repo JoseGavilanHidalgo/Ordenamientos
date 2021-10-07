@@ -12,45 +12,73 @@ from tkinter import ttk
 from matplotlib import pyplot as plt
 from pandas.core import frame
 
+#### Funciones ####
+
+def crearLista():
+    #messagebox.showinfo(title = "NOMBRE: XXXXX XXXX", message = "RUT: 11.111.111 - 1\n Carrera: ICCI\n Disponibilidad: XXXXX\n")#
+    lista=[]
+    ventanaAgregar = Toplevel() #crea nueva ventana al seleccionar practicante-> mostrar datos
+    ventanaAgregar['bg'] = 'steel blue'  # color de fondo
+    ventanaAgregar.geometry("500x450+500+300")
+    ventanaAgregar.resizable(0,0)
+    ventanaAgregar.title("CREAR LISTA")
+
+    label1=Label(ventanaAgregar,font=fuente_0,bg= "steel blue",fg="white",text="Ingrese Numero : ").place (x=50 , y=50)
+    num=IntVar()
+    entry1=ttk.Entry(ventanaAgregar, textvariable= num).place(x=250 , y=55)
+
+    button1 = ttk.Button(ventanaAgregar, text="Agregar", command=lista.append(num.get())).place(x=275,y=80)
+    button2 = ttk.Button(ventanaAgregar,text="Finalizar y Mostrar",command="").place(x=150,y=150)
+
+
+#### VENTANA INICIAL ####
+
 raiz=Tk()
-
-
-
 raiz.title("Calculadora ordenamientos")
 raiz.geometry('600x700') 
 raiz.config(bg="steel blue")
 raiz.resizable(0,0)
 raiz.update()
 
+#### FONTS ####
+
 fuente_0 = font.Font(family="Arial", size=15, weight="normal")
+
+#### LABELS ####
 
 label1=Label(raiz,font=fuente_0,bg="steel blue",fg="white", text="Bienvenido" ).place(x=245, y=0)
 label2=Label(raiz,font=fuente_0,bg="steel blue",fg="white", text="Ingrese una lista o genere una al azar" ).place(x=130, y=60)
-
-button1 = ttk.Button(raiz, text="Crear lista", command="" ).place(x=160,y=150)
-button2 = ttk.Button(raiz,text="Generar lista aleatoria", command="" ).place(x=320,y=150)
-
-
-label3=Label(raiz,font=fuente_0,bg="steel blue",fg="white", text="Ahora, seleccione el tipo de ordenamiento" ).place(x=110, y=220)
-
-
+label3=Label(raiz,font=fuente_0,bg="steel blue",fg="white", text="Ahora, seleccione el tipo de ordenamiento" ).place(x=110, y=250)
 label4=Label(raiz,font=fuente_0,bg="steel blue",fg="white", text="Selección" ).place(x=130, y=300)
+label5=Label(raiz,font=fuente_0,bg="steel blue",fg="white", text="Inserción" ).place(x=360, y=300)
+label6=Label(raiz,font=fuente_0,bg="steel blue",fg="white", text="Bubblesort" ).place(x=355, y=400)
+label7=Label(raiz,font=fuente_0,bg="steel blue",fg="white", text="Quicksort" ).place(x=130, y=400)
+label8=Label(raiz,font=fuente_0,bg="steel blue",fg="white", text="Mergesort" ).place(x=355, y=500)
+label9=Label(raiz,font=fuente_0,bg="steel blue",fg="white", text="Heapsort" ).place(x=130, y=500)
+
+#### BUTTONS ####
+
+button1 = ttk.Button(raiz, text="Crear lista", command=crearLista ).place(x=160,y=120)
+
+button2 = ttk.Button(raiz,text="Generar lista aleatoria", command="" ).place(x=320,y=120)
+
 button3 = ttk.Button(raiz, text="IR", command="" ).place(x=137,y=340)
 
-label5=Label(raiz,font=fuente_0,bg="steel blue",fg="white", text="Inserción" ).place(x=360, y=300)
 button4 = ttk.Button(raiz, text="IR", command="" ).place(x=367,y=340)
 
-label6=Label(raiz,font=fuente_0,bg="steel blue",fg="white", text="Bubblesort" ).place(x=355, y=400)
 button5 = ttk.Button(raiz, text="IR", command="" ).place(x=367,y=450)
 
-label7=Label(raiz,font=fuente_0,bg="steel blue",fg="white", text="Quicksort" ).place(x=130, y=400)
 button6 = ttk.Button(raiz, text="IR", command="" ).place(x=137,y=450)
 
-label8=Label(raiz,font=fuente_0,bg="steel blue",fg="white", text="Mergesort" ).place(x=355, y=500)
 button7 = ttk.Button(raiz, text="IR", command="" ).place(x=367,y=560)
 
-label9=Label(raiz,font=fuente_0,bg="steel blue",fg="white", text="Heapsort" ).place(x=130, y=500)
 button8 = ttk.Button(raiz, text="IR", command="" ).place(x=137,y=560)
+
+#### ENTRYS ####
+
+lista=StringVar()
+
+entry1 = ttk.Entry(raiz, state="readonly" , textvariable=lista)
 
 
 

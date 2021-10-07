@@ -149,6 +149,7 @@ def merge(lista):
         medio=n//2
         der=merge(lista[:medio])
         izq=merge(lista[:medio])
+        print
         return ordenar_mergesort(der,izq)
 
 def ordenar_mergesort(lista1,lista2):
@@ -175,7 +176,6 @@ def ordenar_mergesort(lista1,lista2):
     return resultado
 
 mergesortaux= merge(listaprueba)
-
 
 
 ##### HEAPSORT #####
