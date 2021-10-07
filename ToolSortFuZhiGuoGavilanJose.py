@@ -96,18 +96,25 @@ def ordenar_burbuja(lista):
                 
 
 ##### QUICKSORT #####
-auxqs=''
+
 def ordenar_quicksort(lista, izq , der):
-    aux = auxqs+"La lista a ordenar es la siguiente : " + str(lista)
+    aux=''
+    
+  
     if izq < der :
-        iparticion = particion(lista, izq , der)
+        
+        (iparticion,aux1) = particion(lista, izq , der)
+        aux=aux1
         ordenar_quicksort(lista,izq,iparticion)
         ordenar_quicksort(lista,iparticion+1,der)
-        
+
+     
+  
     return aux
     
 def particion(lista,izq,der):
     aux=''
+    
     pivot=lista[izq]
     
     while True:
@@ -131,8 +138,11 @@ def particion(lista,izq,der):
             # alcanzó a la derecha)
             # significa que se detuvieron porque encontraron un valor que no estaba
             # en orden, así que lo intercambiamos
-            print(aux)
-            return der
+            # print('kkkkkkkkkkkkkkkkkkkkk')
+            # print(aux)
+            # print(der)
+            # print(lista[der])
+            return (der,aux)
 
         else:
 
@@ -168,7 +178,7 @@ def merge(lista):
         medio=n//2
         der=merge(lista[:medio])
         izq=merge(lista[:medio])
-        print
+        
         return ordenar_mergesort(der,izq)
 
 def ordenar_mergesort(lista1,lista2):
