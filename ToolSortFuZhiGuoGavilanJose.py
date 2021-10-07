@@ -63,12 +63,12 @@ def ordenar_insercion(lista):
         posicion=i
         #ciclo que desplaza hacia la derecha los items que son mayores al valor actual 
         #  cuando se llega a un item menor o al final de la sublista se inserta el item actual
-        # aux=aux+'\n'+'Compara : ' +str(lista[posicion-1]) + " con : " + str(valoractual) + " ------> " + str(lista)
         while posicion > 0 and lista[posicion-1] > valoractual:
-            # aux=aux+"\n"+str(lista[posicion])+ " cambia con : " + str(lista[posicion-1])
+            aux=aux+"\n"+str(valoractual)+ " cambia con : " + str(lista[posicion-1])
+            aux=aux+"\nCompara y Desplaza hacia la derecha los mas grandes "
             lista[posicion]=lista[posicion-1]
-            aux=aux+"\nCompara y Desplaza hacia la derecha los mas grandes ----> " + str(lista)
             posicion=posicion-1
+ 
 
         aux=aux+"\n"+str(lista[posicion])+ " compara con : " + str(valoractual) 
         lista[posicion]=valoractual
@@ -220,8 +220,8 @@ def ordenar_mergesort(lista1,lista2):
 # x=ordenar_quicksort(listaprueba,0,len(listaprueba)-1)
 # mergesortaux= merge(listaprueba)
 # x=ordenar_burbuja(listaprueba)
-# x=ordenar_insercion(listaprueba)
-x=ordenar_seleccionAscendente(listaprueba)
+x=ordenar_insercion(listaprueba)
+# x=ordenar_seleccionAscendente(listaprueba)
 print(x)
 
 
