@@ -1,5 +1,5 @@
 ##########  LIBRERIA TOOLSORT ########### 
-listaprueba=[8,3,6,4,2,5,7,1]
+listaprueba=[5,2,4,1,3]
 ##### SELECCION #####
 
 ### ASCENDENTE ###
@@ -58,14 +58,15 @@ def ordenar_insercion(lista):
     
     #ciclo que recorre desde la posicion 0 y en cada pasada para cada item desde 1 hasta n-1
     for i in range(1,n):
+        print("z")
         #Se guarda el valor de la posicion i de la lista en valor actual y en posicion el valor de la i
         valoractual=lista[i]
         posicion=i
-        
-        aux=aux+'\n'+'Compara : ' +str(lista[posicion-1]) + " con : " + str(valoractual) + " ------> " + str(lista)
         #ciclo que desplaza hacia la derecha los items que son mayores al valor actual 
         #  cuando se llega a un item menor o al final de la sublista se inserta el item actual
         while posicion > 0 and lista[posicion-1] > valoractual:
+            aux=aux+'\n'+'Compara : ' +str(lista[posicion-1]) + " con : " + str(valoractual) + " ------> " + str(lista)
+
             lista[posicion]=lista[posicion-1]
             posicion=posicion-1
 
@@ -97,64 +98,73 @@ def ordenar_burbuja(lista):
 
 ##### QUICKSORT #####
 
-def ordenar_quicksort(lista, izq , der):
-    aux=''
+
+# def ordenar_quicksort(lista, izq, der):
     
-  
-    if izq < der :
+#     #se elige un elemento de la lista a ordenar , el cual es llamada pivote.
+#     #se situan los demas elementos de la lista a la izq y derecha del pivote.
+#     #de manera que a unlado queden los menores que el y al otro los mayores.
+#     #es decir , la lista queda separada por 2 sublistas , una por la izquierda y otra por la derecha
+#     #se repiten esto hasta que todos los elementos queden ordenados
+#     aux1 = "La lista a ordenar es la siguiente : " + str(lista)
+#     pivote = lista[izq]
+#     i = izq
+#     j = der
+#     aux = 0
+
+#     while i < j:
+#         while lista[i] <= pivote and i < j:
+#             i += 1
+
+#         while lista[j] > pivote:
+#             j -= 1
+
+#         if i < j:
+#             aux = lista[i]
+#             lista[i] = lista[j]
+#             lista[j] = aux
+            
+            
+#     lista[izq] = lista[j]
+#     lista[j] = pivote
+
+#     if izq < j-1:
+#         ordenar_quicksort(lista,izq,j-1)
         
-        (iparticion,aux1) = particion(lista, izq , der)
-        aux=aux1
-        ordenar_quicksort(lista,izq,iparticion)
-        ordenar_quicksort(lista,iparticion+1,der)
+#     if j+1 < der:
+#         ordenar_quicksort(lista,j+1,der)
+#     aux1=aux1+"\nLa lista ordenada queda de la siguiente manera : " + str(lista)
+#     return aux1
 
-     
-  
-    return aux
-    
-def particion(lista,izq,der):
+# x=ordenar_quicksort(listaprueba,0,len(listaprueba) - 1)
+# print(x)
+def ordenar_quicksort(lista):
+    izquierda = []
+    centro = []
+    derecha = []
     aux=''
-    
-    pivot=lista[izq]
-    
-    while True:
+    if len(lista) > 1:
+        pivote = lista[0]
+        for i in lista:
+            if i < pivote:
+                izquierda.append(i)
+            elif i == pivote:
+                centro.append(i)
+            elif i > pivote:
+                derecha.append(i)
+
+        aux=aux+str(izquierda)+str(["izquierda"])+str(centro)+str(["derecha"])+str(derecha) 
+        print(aux)
+        # print(izquierda+["-"]+centro+["-"]+derecha)
         
-        aux = aux + "\nCompara : " + str(lista[der]) + " con el pivote : " + str(pivot) + " ------> " + str(lista)
-        #Mientras cada elemento desde la izq este en orden(menor que el pivote) :
-        while lista[izq] < pivot:
-            aux = aux + "\nCompara : " + str(lista[izq]) + " con el pivote : " + str(pivot) + " ------> " + str(lista)
-            izq +=1
+        return ordenar_quicksort(izquierda)+centro+ordenar_quicksort(derecha)
+    else:
 
-        #Mientras cada elmento desde la der este en orden (mayor que el pivote) :
-        while lista[der] > pivot:
-            der -=1
-            aux = aux + "\nCompara : " + str(lista[der]) + " con el pivote : " + str(pivot) + " ------> " + str(lista)
-            # si la izquierda es mayor o igual que la derecha significa que no se necesita hacer intercambio, pues ya estan en orden.
+        return lista
+    
 
-        if izq >= der :
-
-            # indicar " donde queda el piv " para poder divir el arreglo y ordenar los elementos restantes 
-            # Si las variables quedaron "lejos" (es decir, la izquierda no superó ni
-            # alcanzó a la derecha)
-            # significa que se detuvieron porque encontraron un valor que no estaba
-            # en orden, así que lo intercambiamos
-            # print('kkkkkkkkkkkkkkkkkkkkk')
-            # print(aux)
-            # print(der)
-            # print(lista[der])
-            return (der,aux)
-
-        else:
-
-            lista[izq], lista[der] = lista[der] , lista[izq]    
-
-            #Hasta este punto ya se intercambiaron , pero se siguen avanzando los indices
-
-            izq += 1
-            der -= 1
-
-  
-
+print(listaprueba)
+print(ordenar_quicksort(listaprueba))
 
 ##### MERGESORT #####
 
@@ -204,10 +214,11 @@ def ordenar_mergesort(lista1,lista2):
 
     return resultado
 
-x=ordenar_quicksort(listaprueba,0,len(listaprueba)-1)
+# x=ordenar_quicksort(listaprueba,0,len(listaprueba)-1)
 # mergesortaux= merge(listaprueba)
 # x=ordenar_burbuja(listaprueba)
-print(x)
+# x=ordenar_insercion(listaprueba)
+# print(x)
 
 
 ##### HEAPSORT #####
@@ -227,4 +238,3 @@ print(x)
 
 
 ##### NORMAL #####
-
