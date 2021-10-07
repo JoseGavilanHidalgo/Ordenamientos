@@ -11,13 +11,14 @@ from PIL import Image, ImageTk
 from tkinter import ttk
 from matplotlib import pyplot as plt
 from pandas.core import frame
+import random
 
 #### Funciones ####
 
 def crearLista():
-    #messagebox.showinfo(title = "NOMBRE: XXXXX XXXX", message = "RUT: 11.111.111 - 1\n Carrera: ICCI\n Disponibilidad: XXXXX\n")#
+
     lista=[]
-    ventanaAgregar = Toplevel() #crea nueva ventana al seleccionar practicante-> mostrar datos
+    ventanaAgregar = Toplevel() 
     ventanaAgregar['bg'] = 'steel blue'  # color de fondo
     ventanaAgregar.geometry("500x450+500+300")
     ventanaAgregar.resizable(0,0)
@@ -29,6 +30,29 @@ def crearLista():
 
     button1 = ttk.Button(ventanaAgregar, text="Agregar", command=lista.append(num.get())).place(x=275,y=80)
     button2 = ttk.Button(ventanaAgregar,text="Finalizar y Mostrar",command="").place(x=150,y=150)
+
+def crearListaRandom(n):
+
+    ventanaAgregarR = Toplevel() #crea nueva ventana al seleccionar practicante-> mostrar datos
+    ventanaAgregarR['bg'] = 'steel blue'  # color de fondo
+    ventanaAgregarR.geometry("500x450+500+300")
+    ventanaAgregarR.resizable(0,0)
+    ventanaAgregarR.title("CREAR LISTA")
+
+    label1=Label(ventanaAgregarR,font=fuente_0,bg= "steel blue",fg="white",text="Ingrese Numero : ").place (x=50 , y=50)
+    num=IntVar()
+    entry1=ttk.Entry(ventanaAgregarR, textvariable= num).place(x=250 , y=55)
+
+    button1 = ttk.Button(ventanaAgregarR, text="Agregar", command="").place(x=275,y=80)
+    button2 = ttk.Button(ventanaAgregarR,text="Finalizar y Mostrar",command="").place(x=150,y=150)
+        
+    lista=[0]*n
+    for i in range(n):
+        lista[i]= random.randint(0,1000)
+    return lista
+
+
+
 
 
 #### VENTANA INICIAL ####
@@ -80,8 +104,9 @@ lista=StringVar()
 
 entry1 = ttk.Entry(raiz, state="readonly" , textvariable=lista)
 
+#### VARIABLES ####
 
-
+listaprincipal=[]
 
 
 raiz.mainloop()

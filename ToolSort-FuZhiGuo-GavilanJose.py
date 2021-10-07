@@ -19,6 +19,7 @@ def ordenar_seleccionAscendente(lista):
                 #hace el cambio que esta en i por el que esta en la ultima posicion 
                 lista[i], lista[j] = lista[j] , lista[i]
                 print(lista[i],lista[j],lista)
+                aux=str(lista[i])+str(lista[j])
 
 ### DESCENDENTE ###
 
@@ -175,7 +176,8 @@ def ordenar_mergesort(lista1,lista2):
 
     return resultado
 
-mergesortaux= merge(listaprueba)
+# mergesortaux= merge(listaprueba)
+ordenar_seleccionAscendente(listaprueba)
 
 
 ##### HEAPSORT #####
