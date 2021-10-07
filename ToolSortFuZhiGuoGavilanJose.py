@@ -1,5 +1,5 @@
 ##########  LIBRERIA TOOLSORT ########### 
-listaprueba=[5,2,4,1,3]
+listaprueba=[5,3,4,1,2]
 ##### SELECCION #####
 
 ### ASCENDENTE ###
@@ -58,19 +58,22 @@ def ordenar_insercion(lista):
     
     #ciclo que recorre desde la posicion 0 y en cada pasada para cada item desde 1 hasta n-1
     for i in range(1,n):
-        print("z")
         #Se guarda el valor de la posicion i de la lista en valor actual y en posicion el valor de la i
         valoractual=lista[i]
         posicion=i
         #ciclo que desplaza hacia la derecha los items que son mayores al valor actual 
         #  cuando se llega a un item menor o al final de la sublista se inserta el item actual
+        # aux=aux+'\n'+'Compara : ' +str(lista[posicion-1]) + " con : " + str(valoractual) + " ------> " + str(lista)
         while posicion > 0 and lista[posicion-1] > valoractual:
-            aux=aux+'\n'+'Compara : ' +str(lista[posicion-1]) + " con : " + str(valoractual) + " ------> " + str(lista)
-
+            # aux=aux+"\n"+str(lista[posicion])+ " cambia con : " + str(lista[posicion-1])
             lista[posicion]=lista[posicion-1]
+            aux=aux+"\nCompara y Desplaza hacia la derecha los mas grandes ----> " + str(lista)
             posicion=posicion-1
 
+        aux=aux+"\n"+str(lista[posicion])+ " compara con : " + str(valoractual) 
         lista[posicion]=valoractual
+        aux=aux+" ----> " + str(lista)
+
     aux=aux+"\nLa lista ordenada queda asi : "+str(lista)  
     return aux
 
@@ -163,8 +166,8 @@ def ordenar_quicksort(lista):
         return lista
     
 
-print(listaprueba)
-print(ordenar_quicksort(listaprueba))
+# print(listaprueba)
+# print(ordenar_quicksort(listaprueba))
 
 ##### MERGESORT #####
 
@@ -218,7 +221,8 @@ def ordenar_mergesort(lista1,lista2):
 # mergesortaux= merge(listaprueba)
 # x=ordenar_burbuja(listaprueba)
 # x=ordenar_insercion(listaprueba)
-# print(x)
+x=ordenar_seleccionAscendente(listaprueba)
+print(x)
 
 
 ##### HEAPSORT #####

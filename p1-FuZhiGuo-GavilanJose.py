@@ -51,7 +51,7 @@ def IRMERGESORT(): #Aqui, creamos la ventana para el tipo de ordenamiento MERGES
     messagebox.showinfo("LISTA ORDENADA POR MERGESORT",x)
 
 def crearLista():
-
+    listaprincipal.clear()
     def mostrar():
         messagebox.showinfo("LISTA",listaprincipal)
         ventanaAgregar.destroy()
@@ -77,7 +77,7 @@ def crearLista():
     button2 = ttk.Button(ventanaAgregar,text="Finalizar y Mostrar",command=mostrar).place(x=150,y=150)
 
 def crearListaRandom():
-    
+    listaprincipal.clear()
     def generador():
         
         for i in range(num.get()):
