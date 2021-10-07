@@ -1,5 +1,5 @@
 ##########  LIBRERIA TOOLSORT ########### 
-listaprueba=[5,3,4,1,2]
+listaprueba=[6,5,3,1,8,7,2,4,9]
 ##### SELECCION #####
 
 ### ASCENDENTE ###
@@ -132,6 +132,7 @@ def ordenar_quicksort(lista):
 ##### MERGESORT #####
 
 def ordenar_mergesort(lista):
+  
     if len(lista) > 1: # se especifica que si el largo de al lista que se le entregue a la funcion, es mayor que 1, procedera con la funcion, ya que se necesita mas de 1 dato para realizar el ordenamiento
         mitad = len(lista) // 2 # se crea una variable para calcular la mitad de la lista con un resultado entero diviendo //
         primera = lista[:mitad] # obtenemos la primera mitad de la lista con [:mitad]
@@ -139,29 +140,41 @@ def ordenar_mergesort(lista):
 
         ordenar_mergesort(primera) #llamamos la funcion y la aplicamos a ambas mitades
         ordenar_mergesort(segunda)
-
         aux1=0 #creamos variables auxiliares, utilizando aux1 para comparar su valor con el valor del largo de la primera mitad y aux2 para comparar su valor con el valor del largo de la sungda mitad
         aux2=0
         aux3=0
 
         while aux1 < len(primera) and aux2 < len(segunda):#aqui la condicion para entrar al ciclo while
             if primera[aux1] < segunda[aux2]: #comenzamos ordenando desde la primera mitad comparando desde la posicion aux1 con la posicion aux2 de la segunda mitad
-                lista[aux3] = primera[aux1] #se reemplaza en la lista, en la posicion aux3, el valor que se encuentre en la posicion aux1 de la primera mitad 
+                lista[aux3] = primera[aux1] #se reemplaza en la lista, en la posicion aux3, el valor que se encuentre en la posicion aux1 de la primera mitad
                 aux1+=1
             else:
                 lista[aux3] = segunda[aux2] #si el valor en la segunda mitad en la posicion aux2 es menor que el valor de la primera mitad en la posicion aux1, se reemplaza el valor de la posicion aux3 por el valor de la segunda mitad en la posicion aux2
                 aux2+=1
+  
+
+
             aux3+=1
 
         while aux1 < len(primera): #comparamos el valor de aux1 acumulado con el largo de la primera mitad para entrar al ciclo while siempre y cuando aux1 sea menor a len(primera)
             lista[aux3] = primera[aux1] #reemplazamos el valor de la posicion aux3 de la lista principal por el dato que se ecuentre en la primera mitad en la posicion aux1
             aux1+=1
             aux3+=1
-
         while aux2 < len(segunda): #se realiza la misma comparacion pero esta vez con el largo de la segunda mitad y con el valor acumulado del auxiliar 2, luego se entra al ciclo while
+      
             lista[aux3] = segunda[aux2] #se reemplazan los valores
             aux2+=1
-            aux3+=1            
+            aux3+=1    
+
+        print('primera : ')
+        print(primera)  
+        print('segunda :')
+        print(segunda)
+  
+
+print(listaprueba)
+ordenar_mergesort(listaprueba)
+print(listaprueba)
 
 ##### HEAPSORT #####
 
@@ -183,13 +196,12 @@ def amontonar(lista, n, i):
 	# Cambiamos raiz si es necesario
 	if mlargo != i:
 		lista[i],lista[mlargo] = lista[mlargo],lista[i] # Realiza el cambio
-
 		# amontonar la raiz
 		amontonar(lista, n, mlargo)
 
 def ordenar_heapsort(lista):
 	n = len(lista)
-
+    
     #Construimos el MaxHeap
     # Dado que el último padre estará en ((n // 2) -1) podemos comenzar en esa ubicación.
 	for i in range(n // 2 - 1, -1, -1):
@@ -200,3 +212,5 @@ def ordenar_heapsort(lista):
 		lista[i], lista[0] = lista[0], lista[i] # cambiamos
 		amontonar(lista, i, 0)
 
+# ordenar_heapsort(listaprueba)
+# print(listaprueba)
