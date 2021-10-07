@@ -37,14 +37,10 @@ def IRBUBBLESORT():  #Aqui, creamos la ventana para el tipo de ordenamiento BUBB
     messagebox.showinfo("LISTA ORDENADA POR BUBBLESORT",x)    
 
 def IRHEAPSORT():  #Aqui, creamos la ventana para el tipo de ordenamiento HEAPSORT
-    ventanaHEAPSORT = Toplevel() 
-    ventanaHEAPSORT['bg'] = 'steel blue'  # color de fondo
-    ventanaHEAPSORT.geometry("500x450+500+300") # tamaño de la ventana
-    ventanaHEAPSORT.resizable(0,0) # no se puede ampliar la ventana
-    ventanaHEAPSORT.title("ORDENAMIENTO HEAPSORT")   # titulo
-
-    entryHEAPSORT = ttk.Entry(ventanaHEAPSORT,state="readonly",textvariable="") # se crea un entry en donde se mostrara la lista a ordenar en modo HEAPSORT
-    entryHEAPSORT.place(x=10,y=10,width=480,height=420) # se edita el ancho y largo del entry anterior          
+    aux="La lista a ordenar es : " +str(listaprincipal)
+    ordenar_heapsort(listaprincipal)
+    aux=aux+"\nLa lista ordenada es : " + str(listaprincipal)
+    messagebox.showinfo("LISTA ORDENADA POR HEAPSORT",aux)        
 
 def IRMERGESORT(): #Aqui, creamos la ventana para el tipo de ordenamiento MERGESORT
     texto="La lista a ordenar es : "+str(listaprincipal) 

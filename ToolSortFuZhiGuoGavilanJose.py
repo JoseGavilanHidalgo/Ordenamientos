@@ -163,34 +163,40 @@ def ordenar_mergesort(lista):
             aux2+=1
             aux3+=1            
 
-numeros = [5,4,1,6,3,7,3,78] # creamos una lista
-print(numeros)        
-
-print("La lista ordenada por el metodo ordenar_mergesort se muestra de la siguiente manera: ")
-ordenar_mergesort(numeros) # llamamos a la funcion y le entregamos la lista creada, para que haga la modificacion y ordene los numeros mediante el ordenamiento MERGESORT
-print(numeros)
-
-# x=ordenar_quicksort(listaprueba,0,len(listaprueba)-1)
-# x=ordenar_burbuja(listaprueba)
-# x=ordenar_insercion(listaprueba)
-# x=ordenar_seleccionAscendente(listaprueba)
-# print(x)
-
-
 ##### HEAPSORT #####
 
+# para agrupar el subarbol en el indice i
+# n es el tamano
+def amontonar(lista, n, i):
+	mlargo = i # raiz
+	l = 2 * i + 1	 # izq = 2*i + 1
+	r = 2 * i + 2	 # derecho = 2*i + 2
 
+	# Si existe un hijo izquierdo en la raiz exists y es mayor que la raiz
+	if l < n and lista[i] < lista[l]:
+		mlargo = l
 
-########### FUNCIONES EXTRAS ###############
+	# Si existe un hijo derecho en la raiz y es mayor que la raiz
+	if r < n and lista[mlargo] < lista[r]:
+		mlargo = r
 
+	# Cambiamos raiz si es necesario
+	if mlargo != i:
+		lista[i],lista[mlargo] = lista[mlargo],lista[i] # Realiza el cambio
 
+		# amontonar la raiz
+		amontonar(lista, n, mlargo)
 
-##### GENERADOR DE LISTAS #####
+def ordenar_heapsort(lista):
+	n = len(lista)
 
+    #Construimos el MaxHeap
+    # Dado que el último padre estará en ((n // 2) -1) podemos comenzar en esa ubicación.
+	for i in range(n // 2 - 1, -1, -1):
+		amontonar(lista, n, i)
 
+	#Extrayemos 1 por 1
+	for i in range(n-1, 0, -1):
+		lista[i], lista[0] = lista[0], lista[i] # cambiamos
+		amontonar(lista, i, 0)
 
-##### RANDOM #####
-
-
-
-##### NORMAL #####
