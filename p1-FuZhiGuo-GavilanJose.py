@@ -29,8 +29,8 @@ def IRINSERCION():  #Aqui, creamos la ventana para el tipo de ordenamiento INSER
   
 
 def IRQUICKSORT():  #Aqui, creamos la ventana para el tipo de ordenamiento QUICKSORT
-    x=ordenar_quicksort(listaprincipal,0,len(listaprincipal)-1)
-    messagebox.showinfo("LISTA ORDENADA POR QUICKSORT",x)   
+    aux="Lista para ordenar : "+ str(listaprincipal)+"\n"+"Lista ordenada : "+ str(ordenar_quicksort(listaprincipal))
+    messagebox.showinfo("LISTA ORDENADA POR QUICKSORT",aux)   
 
 def IRBUBBLESORT():  #Aqui, creamos la ventana para el tipo de ordenamiento BUBBLESORT
     x=ordenar_burbuja(listaprincipal)
@@ -47,8 +47,10 @@ def IRHEAPSORT():  #Aqui, creamos la ventana para el tipo de ordenamiento HEAPSO
     entryHEAPSORT.place(x=10,y=10,width=480,height=420) # se edita el ancho y largo del entry anterior          
 
 def IRMERGESORT(): #Aqui, creamos la ventana para el tipo de ordenamiento MERGESORT
-    x=ordenar_mergesort(listaprincipal)
-    messagebox.showinfo("LISTA ORDENADA POR MERGESORT",x)
+    texto="La lista a ordenar es : "+str(listaprincipal) 
+    ordenar_mergesort(listaprincipal)
+    texto=texto+"\nLa lista ordenada es : " + str(listaprincipal)
+    messagebox.showinfo("LISTA ORDENADA POR MERGESORT",texto)
 
 def crearLista():
     listaprincipal.clear()

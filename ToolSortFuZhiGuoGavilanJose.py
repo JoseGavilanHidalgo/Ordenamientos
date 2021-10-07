@@ -102,45 +102,6 @@ def ordenar_burbuja(lista):
 ##### QUICKSORT #####
 
 
-# def ordenar_quicksort(lista, izq, der):
-    
-#     #se elige un elemento de la lista a ordenar , el cual es llamada pivote.
-#     #se situan los demas elementos de la lista a la izq y derecha del pivote.
-#     #de manera que a unlado queden los menores que el y al otro los mayores.
-#     #es decir , la lista queda separada por 2 sublistas , una por la izquierda y otra por la derecha
-#     #se repiten esto hasta que todos los elementos queden ordenados
-#     aux1 = "La lista a ordenar es la siguiente : " + str(lista)
-#     pivote = lista[izq]
-#     i = izq
-#     j = der
-#     aux = 0
-
-#     while i < j:
-#         while lista[i] <= pivote and i < j:
-#             i += 1
-
-#         while lista[j] > pivote:
-#             j -= 1
-
-#         if i < j:
-#             aux = lista[i]
-#             lista[i] = lista[j]
-#             lista[j] = aux
-            
-            
-#     lista[izq] = lista[j]
-#     lista[j] = pivote
-
-#     if izq < j-1:
-#         ordenar_quicksort(lista,izq,j-1)
-        
-#     if j+1 < der:
-#         ordenar_quicksort(lista,j+1,der)
-#     aux1=aux1+"\nLa lista ordenada queda de la siguiente manera : " + str(lista)
-#     return aux1
-
-# x=ordenar_quicksort(listaprueba,0,len(listaprueba) - 1)
-# print(x)
 def ordenar_quicksort(lista):
     izquierda = []
     centro = []
@@ -166,63 +127,54 @@ def ordenar_quicksort(lista):
         return lista
     
 
-# print(listaprueba)
-# print(ordenar_quicksort(listaprueba))
+
 
 ##### MERGESORT #####
 
-#p = primer elemento
-#r = ultimo elemento
-# [p,q] son secuencia
+def ordenar_mergesort(lista):
+    if len(lista) > 1: # se especifica que si el largo de al lista que se le entregue a la funcion, es mayor que 1, procedera con la funcion, ya que se necesita mas de 1 dato para realizar el ordenamiento
+        mitad = len(lista) // 2 # se crea una variable para calcular la mitad de la lista con un resultado entero diviendo //
+        primera = lista[:mitad] # obtenemos la primera mitad de la lista con [:mitad]
+        segunda = lista[mitad:] # obtenemos la segunda mitad de la lista con [mitad:]
 
-def merge(lista):
+        ordenar_mergesort(primera) #llamamos la funcion y la aplicamos a ambas mitades
+        ordenar_mergesort(segunda)
 
-    #n=largo de la lista
-    n=len(lista)
+        aux1=0 #creamos variables auxiliares, utilizando aux1 para comparar su valor con el valor del largo de la primera mitad y aux2 para comparar su valor con el valor del largo de la sungda mitad
+        aux2=0
+        aux3=0
 
-    #Parte con un if que comprueba la longitud de la lista . Si es menor que 2 , se devuelve la lista porque ya esta ordenada
+        while aux1 < len(primera) and aux2 < len(segunda):#aqui la condicion para entrar al ciclo while
+            if primera[aux1] < segunda[aux2]: #comenzamos ordenando desde la primera mitad comparando desde la posicion aux1 con la posicion aux2 de la segunda mitad
+                lista[aux3] = primera[aux1] #se reemplaza en la lista, en la posicion aux3, el valor que se encuentre en la posicion aux1 de la primera mitad 
+                aux1+=1
+            else:
+                lista[aux3] = segunda[aux2] #si el valor en la segunda mitad en la posicion aux2 es menor que el valor de la primera mitad en la posicion aux1, se reemplaza el valor de la posicion aux3 por el valor de la segunda mitad en la posicion aux2
+                aux2+=1
+            aux3+=1
 
-    if n<2:
-        return lista
-    
-    #De lo contrario , se divide en 2.
+        while aux1 < len(primera): #comparamos el valor de aux1 acumulado con el largo de la primera mitad para entrar al ciclo while siempre y cuando aux1 sea menor a len(primera)
+            lista[aux3] = primera[aux1] #reemplazamos el valor de la posicion aux3 de la lista principal por el dato que se ecuentre en la primera mitad en la posicion aux1
+            aux1+=1
+            aux3+=1
 
-    else:
-        medio=n//2
-        der=merge(lista[:medio])
-        izq=merge(lista[:medio])
-        
-        return ordenar_mergesort(der,izq)
+        while aux2 < len(segunda): #se realiza la misma comparacion pero esta vez con el largo de la segunda mitad y con el valor acumulado del auxiliar 2, luego se entra al ciclo while
+            lista[aux3] = segunda[aux2] #se reemplazan los valores
+            aux2+=1
+            aux3+=1            
 
-def ordenar_mergesort(lista1,lista2):
+numeros = [5,4,1,6,3,7,3,78] # creamos una lista
+print(numeros)        
 
-    #Intercala los elementos de las divisiones.
-    
-    i,j = 0, 0 
-    resultado=[] #lista final
-
-    #Intercala ordenadamente
-    while(i < len(lista1) and j < len(lista2)):
-        if(lista1[i] < lista2[j]): 
-            resultado.append(lista1[i])
-            i += 1
-        else:
-            resultado.append(lista2[j])
-            j += 1
-
-    #Se agregan los resultados a la lista final
-
-    resultado += lista1[i:]
-    resultado += lista2[j:]
-
-    return resultado
+print("La lista ordenada por el metodo ordenar_mergesort se muestra de la siguiente manera: ")
+ordenar_mergesort(numeros) # llamamos a la funcion y le entregamos la lista creada, para que haga la modificacion y ordene los numeros mediante el ordenamiento MERGESORT
+print(numeros)
 
 # x=ordenar_quicksort(listaprueba,0,len(listaprueba)-1)
-# mergesortaux= merge(listaprueba)
 # x=ordenar_burbuja(listaprueba)
-x=ordenar_insercion(listaprueba)
+# x=ordenar_insercion(listaprueba)
 # x=ordenar_seleccionAscendente(listaprueba)
-print(x)
+# print(x)
 
 
 ##### HEAPSORT #####
