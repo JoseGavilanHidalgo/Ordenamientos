@@ -12,6 +12,7 @@ from tkinter import ttk
 from matplotlib import pyplot as plt
 from pandas.core import frame
 import random
+from ToolSortFuZhiGuoGavilanJose import *
 
 #### Funciones ####
 def IRSELECCION():  #Aqui, creamos la ventana para el tipo de ordenamiento SELECCION
@@ -25,14 +26,9 @@ def IRSELECCION():  #Aqui, creamos la ventana para el tipo de ordenamiento SELEC
     entrySELECCION.place(x=10,y=10,width=480,height=420) # se edita el ancho y largo del entry anterior
 
 def IRINSERCION():  #Aqui, creamos la ventana para el tipo de ordenamiento INSERCION
-    ventanaINSERCION = Toplevel() 
-    ventanaINSERCION['bg'] = 'steel blue'  # color de fondo
-    ventanaINSERCION.geometry("500x450+500+300") # tamaño de la ventana
-    ventanaINSERCION.resizable(0,0) # no se puede ampliar la ventana
-    ventanaINSERCION.title("ORDENAMIENTO INSERCION") # titulo
-
-    entryINSERCION = ttk.Entry(ventanaINSERCION,state="readonly",textvariable="") # se crea un entry en donde se mostrara la lista a ordenar en modo INSERCION
-    entryINSERCION.place(x=10,y=10,width=480,height=420) # se edita el ancho y largo del entry anterior  
+    x=ordenar_burbuja(listaprincipal1)
+    messagebox.showinfo("LISTA ORDENADA POR INSERCION",x)
+  
 
 def IRQUICKSORT():  #Aqui, creamos la ventana para el tipo de ordenamiento QUICKSORT
     ventanaQUICKSORT = Toplevel() 
@@ -148,7 +144,7 @@ button2 = ttk.Button(raiz,text="Generar lista aleatoria", command="" ).place(x=3
 
 button3 = ttk.Button(raiz, text="IR", command=IRSELECCION ).place(x=137,y=340)
 
-button4 = ttk.Button(raiz, text="IR", command=IRINSERCION ).place(x=367,y=340)
+button4 = ttk.Button(raiz, text="IR", command=IRINSERCION  ).place(x=367,y=340)
 
 button5 = ttk.Button(raiz, text="IR", command=IRBUBBLESORT ).place(x=367,y=450)
 
@@ -169,6 +165,9 @@ entry1 = ttk.Entry(raiz, state="readonly" , textvariable=lista)
 #### VARIABLES ####
 
 listaprincipal=[]
-
+listastring=''
+listaprincipal1=[6,3,4,5,2]
+# x=ordenar_burbuja(listaprueba)
+# print(x)
 
 raiz.mainloop()

@@ -1,11 +1,11 @@
 ##########  LIBRERIA TOOLSORT ########### 
-listaprueba=[5,3,4,1,2]
+listaprueba=[8,3,6,4,2,5,7,1]
 ##### SELECCION #####
 
 ### ASCENDENTE ###
 
 def ordenar_seleccionAscendente(lista):
-    
+    aux = "La lista a ordenar es la siguiente : " + str(lista)
     # n = longitud lista
     n = len(lista)
 
@@ -15,16 +15,19 @@ def ordenar_seleccionAscendente(lista):
         for j in range(i+1,n):
             #se guarda cada paso del ciclo en la variable i y j
             #compara el valor de la lista en la posicion i con el de la posicion j
+            aux=aux+"\n"+"Compara : " +str(lista[i])+" con : "+str(lista[j])+" ----> "+str(lista)
             if lista[i] > lista[j]:
                 #hace el cambio que esta en i por el que esta en la ultima posicion 
                 lista[i], lista[j] = lista[j] , lista[i]
-                print(lista[i],lista[j],lista)
-                aux=str(lista[i])+str(lista[j])
+                # print(lista[i],lista[j],lista)
+    aux=aux+"\nLa lista ordenada queda asi : "+str(lista)  
+    return aux
+                
 
 ### DESCENDENTE ###
 
 def ordenar_seleccionDescendente(lista):
-    
+    aux = "La lista a ordenar es la siguiente : " + str(lista)
     # n = longitud lista
     n = len(lista)
 
@@ -34,26 +37,32 @@ def ordenar_seleccionDescendente(lista):
         for j in range(i+1,n):
             #se guarda cada paso del ciclo en la variable i y j
             #compara el valor de la lista en la posicion i con el de la posicion j
+            aux=aux+"\n"+"Compara : " +str(lista[i])+" con : "+str(lista[j])+" ----> "+str(lista)
             if lista[i] < lista[j]:
                 #hace el cambio que esta en i por el que esta en la ultima posicion 
                 lista[i], lista[j] = lista[j] , lista[i]
-                print(lista[i],lista[j],lista)
+                # print(lista[i],lista[j],lista)
+    aux=aux+"\nLa lista ordenada queda asi : "+str(lista)  
+    return aux
+                
+
 
 
 ##### INSERCION #####
 
 def ordenar_insercion(lista):
 
+    aux = "La lista a ordenar es la siguiente : " + str(lista)
     # n = longitud lista
     n=len(lista)
-    print("La lista es : ", lista)
-
+    
     #ciclo que recorre desde la posicion 0 y en cada pasada para cada item desde 1 hasta n-1
     for i in range(1,n):
         #Se guarda el valor de la posicion i de la lista en valor actual y en posicion el valor de la i
         valoractual=lista[i]
         posicion=i
-        print(lista)
+        
+        aux=aux+'\n'+'Compara : ' +str(lista[posicion-1]) + " con : " + str(valoractual) + " ------> " + str(lista)
         #ciclo que desplaza hacia la derecha los items que son mayores al valor actual 
         #  cuando se llega a un item menor o al final de la sublista se inserta el item actual
         while posicion > 0 and lista[posicion-1] > valoractual:
@@ -61,19 +70,20 @@ def ordenar_insercion(lista):
             posicion=posicion-1
 
         lista[posicion]=valoractual
-    print(lista)
+    aux=aux+"\nLa lista ordenada queda asi : "+str(lista)  
+    return aux
 
 
 ##### BURBUJA #####
 
 def ordenar_burbuja(lista):
-
+    
+    aux1 = "La lista a ordenar es la siguiente : " + str(lista)
     # n = longitud lista
     n = len(lista)
-    print(lista)
     for i in range(1,n):
         for j in range(0,n-i):
-            print (lista[j+1],lista[j])
+            aux1=aux1+'\n'+'Compara : ' +str(lista[j]) + " con : " + str(lista[j+1]) + " ------> " + str(lista)
             #Si el elemento es menor al primero entonces se intercambian , en caso contrario ,
             #  evalua el segundo con el siguiente elemento adyacente a su izquierda 
             # el algoritmo terminara una vez que las iteraciones sea igual al numero de elmentos que contenga el vector de numeros
@@ -81,39 +91,47 @@ def ordenar_burbuja(lista):
                 aux=lista[j]
                 lista[j]=lista[j+1]
                 lista[j+1]=aux
-        print(lista)
+    aux1=aux1+"\nLa lista ordenada queda asi : "+str(lista) 
+    return aux1
                 
 
 ##### QUICKSORT #####
-
+auxqs=''
 def ordenar_quicksort(lista, izq , der):
+    aux = auxqs+"La lista a ordenar es la siguiente : " + str(lista)
     if izq < der :
         iparticion = particion(lista, izq , der)
         ordenar_quicksort(lista,izq,iparticion)
         ordenar_quicksort(lista,iparticion+1,der)
+        
+    return aux
     
 def particion(lista,izq,der):
+    aux=''
     pivot=lista[izq]
+    
     while True:
-        print(lista)
+        
+        aux = aux + "\nCompara : " + str(lista[der]) + " con el pivote : " + str(pivot) + " ------> " + str(lista)
         #Mientras cada elemento desde la izq este en orden(menor que el pivote) :
         while lista[izq] < pivot:
+            aux = aux + "\nCompara : " + str(lista[izq]) + " con el pivote : " + str(pivot) + " ------> " + str(lista)
             izq +=1
 
         #Mientras cada elmento desde la der este en orden (mayor que el pivote) :
         while lista[der] > pivot:
             der -=1
-
+            aux = aux + "\nCompara : " + str(lista[der]) + " con el pivote : " + str(pivot) + " ------> " + str(lista)
             # si la izquierda es mayor o igual que la derecha significa que no se necesita hacer intercambio, pues ya estan en orden.
 
         if izq >= der :
 
-            # indicar " donde queda " para poder divir el arreglo y ordenar los elementos restantes 
+            # indicar " donde queda el piv " para poder divir el arreglo y ordenar los elementos restantes 
             # Si las variables quedaron "lejos" (es decir, la izquierda no superó ni
             # alcanzó a la derecha)
             # significa que se detuvieron porque encontraron un valor que no estaba
             # en orden, así que lo intercambiamos
-
+            print(aux)
             return der
 
         else:
@@ -125,7 +143,7 @@ def particion(lista,izq,der):
             izq += 1
             der -= 1
 
-ordenar_quicksort(listaprueba,0,len(listaprueba)-1)
+  
 
 
 ##### MERGESORT #####
@@ -176,8 +194,10 @@ def ordenar_mergesort(lista1,lista2):
 
     return resultado
 
+x=ordenar_quicksort(listaprueba,0,len(listaprueba)-1)
 # mergesortaux= merge(listaprueba)
-ordenar_seleccionAscendente(listaprueba)
+# x=ordenar_burbuja(listaprueba)
+print(x)
 
 
 ##### HEAPSORT #####
@@ -185,6 +205,8 @@ ordenar_seleccionAscendente(listaprueba)
 
 
 ########### FUNCIONES EXTRAS ###############
+
+
 
 ##### GENERADOR DE LISTAS #####
 
