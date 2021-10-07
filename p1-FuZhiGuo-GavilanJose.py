@@ -15,39 +15,26 @@ import random
 from ToolSortFuZhiGuoGavilanJose import *
 
 #### Funciones ####
-def IRSELECCION():  #Aqui, creamos la ventana para el tipo de ordenamiento SELECCION
-    ventanaSELECCION = Toplevel() 
-    ventanaSELECCION['bg'] = 'steel blue'  # color de fondo
-    ventanaSELECCION.geometry("500x450+500+300") # tamaño de la ventana
-    ventanaSELECCION.resizable(0,0) # no se puede ampliar la ventana
-    ventanaSELECCION.title("ORDENAMIENTO SELECCION") # titulo
+def IRSELECCIONASCENDENTE():  #Aqui, creamos la ventana para el tipo de ordenamiento SELECCION
+   x=ordenar_seleccionAscendente(listaprincipal1)
+   messagebox.showinfo("LISTA ORDENADA POR SELECCION ASCENDENTE",x)
 
-    entrySELECCION = ttk.Entry(ventanaSELECCION,state="readonly",textvariable="") # se crea un entry en donde se mostrara la lista a ordenar en modo SELECCION
-    entrySELECCION.place(x=10,y=10,width=480,height=420) # se edita el ancho y largo del entry anterior
+def IRSELECCIONDESCENDENTE():
+    x=ordenar_seleccionDescendente(listaprincipal1)
+    messagebox.showinfo("LISTA ORDENADA POR SELECCION DESCENDENTE",x)
 
 def IRINSERCION():  #Aqui, creamos la ventana para el tipo de ordenamiento INSERCION
-    x=ordenar_insercion(listaprincipal)
+    x=ordenar_insercion(listaprincipal1)
     messagebox.showinfo("LISTA ORDENADA POR INSERCION",x)
+  
 
 def IRQUICKSORT():  #Aqui, creamos la ventana para el tipo de ordenamiento QUICKSORT
-    ventanaQUICKSORT = Toplevel() 
-    ventanaQUICKSORT['bg'] = 'steel blue'  # color de fondo
-    ventanaQUICKSORT.geometry("500x450+500+300") # tamaño de la ventana
-    ventanaQUICKSORT.resizable(0,0) # no se puede ampliar la ventana
-    ventanaQUICKSORT.title("ORDENAMIENTO QUICKSORT") # titulo
-
-    entryQUICKSORT = ttk.Entry(ventanaQUICKSORT,state="readonly",textvariable="") # se crea un entry en donde se mostrara la lista a ordenar en modo QUICKSORT
-    entryQUICKSORT.place(x=10,y=10,width=480,height=420) # se edita el ancho y largo del entry anterior    
+    x=ordenar_quicksort(listaprincipal1)
+    messagebox.showinfo("LISTA ORDENADA POR QUICKSORT",x)   
 
 def IRBUBBLESORT():  #Aqui, creamos la ventana para el tipo de ordenamiento BUBBLESORT
-    ventanaBUBBLESORT = Toplevel() 
-    ventanaBUBBLESORT['bg'] = 'steel blue'  # color de fondo
-    ventanaBUBBLESORT.geometry("500x450+500+300") # tamaño de la ventana
-    ventanaBUBBLESORT.resizable(0,0) # no se puede ampliar la ventana
-    ventanaBUBBLESORT.title("ORDENAMIENTO BUBBLESORT") # titulo
-
-    entryBUBBLESORT = ttk.Entry(ventanaBUBBLESORT,state="readonly",textvariable="") # se crea un entry en donde se mostrara la lista a ordenar en modo BUBBLESORT
-    entryBUBBLESORT.place(x=10,y=10,width=480,height=420) # se edita el ancho y largo del entry anterior    
+    x=ordenar_burbuja(listaprincipal1)
+    messagebox.showinfo("LISTA ORDENADA POR BUBBLESORT",x)    
 
 def IRHEAPSORT():  #Aqui, creamos la ventana para el tipo de ordenamiento HEAPSORT
     ventanaHEAPSORT = Toplevel() 
@@ -60,15 +47,8 @@ def IRHEAPSORT():  #Aqui, creamos la ventana para el tipo de ordenamiento HEAPSO
     entryHEAPSORT.place(x=10,y=10,width=480,height=420) # se edita el ancho y largo del entry anterior          
 
 def IRMERGESORT(): #Aqui, creamos la ventana para el tipo de ordenamiento MERGESORT
-    ventanaMERGESORT = Toplevel() 
-    ventanaMERGESORT['bg'] = 'steel blue'  # color de fondo
-    ventanaMERGESORT.geometry("500x450+500+300") # tamaño de la ventana
-    ventanaMERGESORT.resizable(0,0) # no se puede ampliar la ventana
-    ventanaMERGESORT.title("ORDENAMIENTO MERGESORT") # titulo
-
-    entryMERGESORT = ttk.Entry(ventanaMERGESORT,state="readonly",textvariable="") # se crea un entry en donde se mostrara la lista a ordenar en modo MERGESORT
-    entryMERGESORT.place(x=10,y=10,width=480,height=420) # se edita el ancho y largo del entry anterior
-
+    x=ordenar_mergesort(listaprincipal)
+    messagebox.showinfo("LISTA ORDENADA POR MERGESORT",x)
 
 def crearLista():
 
@@ -155,17 +135,20 @@ button1 = ttk.Button(raiz, text="Crear lista", command=crearLista ).place(x=160,
 
 button2 = ttk.Button(raiz,text="Generar lista aleatoria", command=crearListaRandom ).place(x=320,y=120)
 
-button3 = ttk.Button(raiz, text="IR", command=IRSELECCION ).place(x=137,y=340)
+button3= ttk.Button(raiz,text="Eliminar lista",command="").place(x=255,y=190)
 
-button4 = ttk.Button(raiz, text="IR", command=IRINSERCION  ).place(x=367,y=340)
+button3 = ttk.Button(raiz, text="ASCENDENTE", command=IRSELECCIONASCENDENTE ).place(x=87,y=340)
+button4 = ttk.Button(raiz, text="DESCENDENTE", command=IRSELECCIONDESCENDENTE ).place(x=207,y=340)
 
-button5 = ttk.Button(raiz, text="IR", command=IRBUBBLESORT ).place(x=367,y=450)
+button5 = ttk.Button(raiz, text="IR", command=IRINSERCION  ).place(x=367,y=340)
 
-button6 = ttk.Button(raiz, text="IR", command=IRQUICKSORT ).place(x=137,y=450)
+button6 = ttk.Button(raiz, text="IR", command=IRBUBBLESORT ).place(x=367,y=450)
 
-button7 = ttk.Button(raiz, text="IR", command=IRMERGESORT ).place(x=367,y=560)
+button7 = ttk.Button(raiz, text="IR", command=IRQUICKSORT ).place(x=137,y=450)
 
-button8 = ttk.Button(raiz, text="IR", command=IRHEAPSORT ).place(x=137,y=560)
+button8 = ttk.Button(raiz, text="IR", command=IRMERGESORT ).place(x=367,y=560)
+
+button9 = ttk.Button(raiz, text="IR", command=IRHEAPSORT ).place(x=137,y=560)
 
 #### ENTRYS ####
 
